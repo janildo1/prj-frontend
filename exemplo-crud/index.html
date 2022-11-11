@@ -18,18 +18,19 @@
         // 03 Manda de fato o request
         xhtpp.send();
         // 04 Definir uma função de retorno de chamada
-        xhtpp.onload = function () {
+        xhttp.onload = function () {
             lista = this.responseText;
             console.log(lista);
-            lista = JSON.parse();
+            lista = JSON.parse(lista);
             console.log(lista);
 
             document.getElementById('lista').innerHTML = "Lista de pessoas";
 
             for (const i of lista) {
-                document.getElementById(lista).append(i.nome + " - ");
+                document.getElementById('lista').append(i.email + " - ");
             }
         }
+
     </script>
 </body>
 
