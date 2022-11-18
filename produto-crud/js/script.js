@@ -1,7 +1,7 @@
 // request via JavaScript ajax 4 passos
 // 01 criar a váriavel
 xhttp = new XMLHttpRequest();
-var lista;
+var listaProduto;
 var api = "https://janildo1.herokuapp.com/api/produto/";
 
 function listar() {
@@ -11,26 +11,25 @@ function listar() {
     xhttp.send();
     // 04 execução quando tiver a devolutiva do request
     xhttp.onload = function () {
-        lista = this.responseText;
-        // console.log(lista);
-        lista = JSON.parse(lista);
-        // console.log(lista);
+        listaProduto = this.responseText;
+        listaProduto = JSON.parse(listaProduto);
+
         texto = "";
         i = 0;
-        for (const u of lista) {
-            texto += `<tr onclick='editar(${i})'><td>${u.nome}</td><td>${u.descricao}</td><td>${u.valor}</td></tr>`;
+        for (const p of listaProduto) {
+            texto += `<tr onclick='editar(${i})'><td>${p.nome}</td><td>${p.descricao}</td><td>${p.valor}</td></tr>`;
             i++;
         }
-        document.getElementById('lista').innerHTML = texto;
+        document.getElementById('listaProduto').innerHTML = texto;
     }
 }
 
 function editar(i) {
-    u = lista[i];
-    document.getElementById("nome").value = u.nome;
-    document.getElementById("descricao").value = u.descricao;
-    document.getElementById("valor").value = u.valor;
-    document.getElementById("id").value = u.id;
+    p = listaProduto[i];
+    document.getElementById("nome").value = p.nome;
+    document.getElementById("descricao").value = p.descricao;
+    document.getElementById("valor").value = p.valor;
+    document.getElementById("id").value = p.id;
 }
 
 function gravar() {
